@@ -1,0 +1,88 @@
+"""
+https://github.com/patrickloeber/MLfromscratch/blob/master/mlfromscratch/knn.py
+"""
+import numpy as np
+import heapq
+from collections import Counter
+
+
+def euclidean_distance(i, j):
+  return np.sqrt(np.sum((i - j) ** 2))
+
+
+class KNN:
+  """
+  class docstring
+  """
+
+  def __init__(self, n_class=3):
+    self.k = n_class
+
+  def fit(self, x, y):
+    self.x_train = x
+    self.y_train = y
+
+  def predict(self, x):
+    y_pred = [self._predict(i) for i in x]
+    return np.array(y_pred)
+
+  def _predict(self, x):
+    # compute distances between x and all examples in the training set
+    distance = [euclidean_distance(x, i) for i in self.x_train]
+    # sort by distance and return indices of the first k neighbors
+    k_idx = np.argsort(distance)[:self.k]
+    # extract the labels of the k nearest neighbor training samples
+    k_neighbor_labels = [self.y_train[i] for i in k_idx]
+    # return the most common class label
+    most_common = Counter(k_neighbor_labels).most_common(1)
+    return most_common[0][0]
+
+  def predict_fast(self, x):
+    y_pred = [self._predict(i) for i in x]
+    return np.array(y_pred)
+
+  def _predict_fast(self, x):
+    distance = []
+    for i, j in zip(self.x_train, self.y_train):
+      distance.append((euclidean_distance(x, i), j))
+    heapq.heapify(distance)
+    k_neighbor_labels = [heapq.heappop(distance)[1] for _ in range(self.k)]
+    most_common = Counter(k_neighbor_labels).most_common(1)
+    return most_common[0][0]
+
+
+if __name__ == '__main__':
+  # Imports
+  import cProfile
+  import pstats
+  from sklearn import datasets
+  from sklearn.model_selection import train_test_split
+
+  def accuracy(y_true, y_pred):
+    acc = np.sum(y_true == y_pred) / len(y_true)
+    return acc
+
+  iris = datasets.load_iris()
+  data, target = iris.data, iris.target
+
+  x_train, x_test, y_train, y_test = train_test_split(
+      data, target, test_size=0.2, random_state=1234
+  )
+
+  k = 3
+  clf = KNN(n_class=k)
+  clf.fit(x_train, y_train)
+
+  profiler = cProfile.Profile()
+  profiler.enable()
+  predictions_a = clf.predict(x_test)
+  predictions_b = clf.predict_fast(x_test)
+  profiler.disable()
+  stats = pstats.Stats(profiler).sort_stats('ncalls')
+
+  stats.print_stats()
+  print(
+      "KNN classification accuracy",
+      accuracy(y_test, predictions_a),
+      accuracy(y_test, predictions_b)
+  )
