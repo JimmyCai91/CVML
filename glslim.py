@@ -57,14 +57,14 @@ class Test(unittest.TestCase):
   class docstring
   """
   def testShouldRaiseExceptionWithNonCSVInput(self):
-    rating_file = "./data/GroupLens/MovieLens/ml-latest-small/ratings" # pylint: disable=line-too-long
+    rating_file = "ratings.xyz"
     with self.assertRaises(Exception) as context:
-      GLSLIM(rating_file + ".xyz")
+      GLSLIM(rating_file)
     self.assertTrue("rating_file should be csv" in str(context.exception))
 
   def testGLSLIM(self):
-    rating_file = "./data/GroupLens/MovieLens/ml-latest-small/ratings" # pylint: disable=line-too-long
-    alg = GLSLIM(rating_file + ".csv")
+    rating_file = "ratings.csv"
+    alg = GLSLIM(rating_file)
     alg.preprocess()
     alg.glslim()
 
