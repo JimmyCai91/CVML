@@ -7,6 +7,7 @@ import cProfile
 import pstats
 
 import numpy as np
+from numpy.linalg import norm
 from scipy.spatial.distance import cosine
 from sklearn.metrics.pairwise import pairwise_distances
 
@@ -18,12 +19,9 @@ def compute_user_cosine_similarity(user_item_matrix):
   """
   # compute the user-user similarity matrix
   #     using cosine similarity
-  user_user_matrix = np.zeros((user_item_matrix.shape[0],
-                               user_item_matrix.shape[0]))
-  for i in range(user_item_matrix.shape[0]):
-    for j in range(user_item_matrix.shape[0]):
-      user_user_matrix[i, j] = 1 - cosine(user_item_matrix[i],
-                                          user_item_matrix[j])
+  norm_matrix = norm(user_item_matrix, axis=1)
+  user_user_matrix = user_item_matrix.dot(user_item_matrix.T) / \
+      (norm_matrix.reshape(-1, 1) * norm_matrix)
   return user_user_matrix
 
 def compute_user_pearson_correlation_similarity(user_item_matrix):
@@ -60,12 +58,12 @@ class TestComputeUserSimilarity(unittest.TestCase):
     user_item_matrix = np.array([[0, 1], [1, 0]])
     user_user_matrix = compute_user_cosine_similarity(user_item_matrix)
     output = np.array([[1, 0], [0, 1]])
-    self.assertTrue((user_user_matrix == output).all())
+    self.assertTrue(np.array_equal(user_user_matrix, output))
 
     user_item_matrix = np.array([[0, 1], [0, 1]])
     user_user_matrix = compute_user_cosine_similarity(user_item_matrix)
     output = np.array([[1, 1], [1, 1]])
-    self.assertTrue((user_user_matrix == output).all())
+    self.assertTrue(np.array_equal(user_user_matrix, output))
 
   def testComputeUserCosineSimilaritySpeed(self):
     user_item_matrix = np.ones((100, 50))
