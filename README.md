@@ -8,6 +8,7 @@
 ## Recommendation
 
 - user-based recommendation: `user_based_rs.py`
+- item-based recommendation: `item_based_rs.py`
 
     | Similarity | MAE | 
     | --- | --- |

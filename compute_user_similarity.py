@@ -1,10 +1,15 @@
 """
 module docstring
 """
+
 import unittest
+import cProfile
+import pstats
+
 import numpy as np
 from scipy.spatial.distance import cosine
 from sklearn.metrics.pairwise import pairwise_distances
+
 
 def compute_user_cosine_similarity(user_item_matrix):
   """
@@ -61,6 +66,15 @@ class TestComputeUserSimilarity(unittest.TestCase):
     user_user_matrix = compute_user_cosine_similarity(user_item_matrix)
     output = np.array([[1, 1], [1, 1]])
     self.assertTrue((user_user_matrix == output).all())
+
+  def testComputeUserCosineSimilaritySpeed(self):
+    user_item_matrix = np.ones((100, 50))
+    profiler = cProfile.Profile()
+    profiler.enable()
+    _ = compute_user_cosine_similarity(user_item_matrix)
+    profiler.disable()
+    stats = pstats.Stats(profiler).sort_stats('ncalls')
+    stats.print_stats()
 
   def testComputeUserPearsonCorrelation(self):
       pass
