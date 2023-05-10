@@ -25,4 +25,5 @@
 
 ## NLP
 
-- huggingface transformers: `huggingface-hello-transformer.py`
+- huggingface transformers: `huggingface-hello-transformer.py` $\cdot$ 
+    `huggingface-text-classification.ipynb`
