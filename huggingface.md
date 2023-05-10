@@ -7,7 +7,7 @@
 - How does transformers differ from recurrent models
 - Although there are hundreds of different transformer models, most of them 
   belong to one of three types. <font color=#ff0000>Name them and provide their
-  applications</font> ([HF](../../PDF/Lewis%20Tunstall%2C%20Leandro%20von%20Werra%2C%20Thomas%20Wolf%20-%20Natural%20Language%20Processing%20with%20Transformers_%20Building%20Language%20Applications%20with%20Hugging%20Face-O'Reilly%20Media%20(2022).pdf) p59)
+  applications</font> (page 59)
 - Describe the feed-forward layer in transformers and explain its 
   main hyperparameter
 - Explain/compare post layer normalization and pre layer normalization in 
@@ -50,4 +50,15 @@
     (2) Gaussian Error Linear Unit Activates Neural Networks Beyond ReLU. https://syncedreview.com/2020/01/03/gaussian-error-linear-unit-activates-neural-networks-beyond-relu/.
     (3) GELU Explained | Papers With Code. https://paperswithcode.com/method/gelu.
     (4) arXiv:1606.08415v2 [cs.LG] 8 Jul 2016. https://arxiv.org/pdf/1606.08415v2.pdf.
+
 ---
+
+**Multilingual Named Entity Recognition**
+
+---
+
+**Making Transformers Efficient in Production**
+- name the four complementary techniques that can be used to speed up the 
+  predictions and reduce the memory footprint of transformers (page 209)
+- name the main approaches to quantization and list their pros and cons
+  (page 235)

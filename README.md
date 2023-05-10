@@ -24,6 +24,10 @@
 - glslim alg.: `glslim.py`
 
 ## NLP
-
-- huggingface transformers: `huggingface-hello-transformer.py` $\cdot$ 
-    `huggingface-text-classification.ipynb`
+- huggingface transformers
+  - **Goal**: read this book “Natural Language Processing with Transformers” 
+    and have familiarized yourself with Hugging Face transformers
+  - `huggingface-hello-transformer.py`
+  - `huggingface-text-classification.ipynb`
+  - `huggingface-transformer-anatomy.ipynb`
+  - `huggingface-making-transformers-efficient-in-production.ipynb`
