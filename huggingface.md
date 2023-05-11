@@ -1,18 +1,27 @@
+**Text Classification**
+1. What is the standard fine-tuning approach discussed in this chapter
+
+---
+
 **Transformers Anatomy**
-- Name the most important building block that makes a transformer work 
-- There are several ways to implement a <font color=#ff0000>answer to the 
-  question above</font>, but the most common one is ____, 
-  from the paper introducing the Transformer architecture. <font color=#ff0000>
-  List its implementation steps</font>
-- How does transformers differ from recurrent models
-- Although there are hundreds of different transformer models, most of them 
-  belong to one of three types. <font color=#ff0000>Name them and provide their
-  applications</font> (page 59)
-- Describe the feed-forward layer in transformers and explain its 
-  main hyperparameter
-- Explain/compare post layer normalization and pre layer normalization in 
-  transformers
-- nn.GELU()  
+1. Name the most important `building block` that makes a transformer work (p60)
+1. There are several ways to implement a `answer to the 
+  question above`, but the most common one is ____, 
+  from the paper introducing the Transformer architecture. 
+  `List its implementation steps` and then `draw its network` (p62-63 \& Fig. 3-4)
+1. What network improves the mentioned approach? (page 67) Draw its network (Fig. 3-5)
+1. How does transformers differ from recurrent models (page 61)
+1. Although there are hundreds of different transformer models, most of them 
+  belong to one of three types. `Name them, list their representative models,
+  and provide their applications` (page 59, page 79-83)
+1. Describe the feed-forward layer in transformers and explain its 
+  main hyperparameter (page 70-71)
+1. Explain/compare post layer normalization and pre layer normalization in 
+  transformers (page 71-72)
+
+
+<font color=#ff0000>nn.GELU()</font>
+
     `nn.GELU` is a class in PyTorch that applies the **Gaussian Error Linear Units function**¹. The function is defined as `GELU(x) = x * Φ(x)`, where `Φ(x)` is the Cumulative Distribution Function for Gaussian Distribution¹.
 
     The `approximate` argument can be set to `'tanh'` to estimate the Gelu function with `GELU(x) = 0.5 * x * (1 + Tanh(√(2/π) * (x + 0.044715 * x^3)))`¹.
@@ -58,7 +67,18 @@
 ---
 
 **Making Transformers Efficient in Production**
-- name the four complementary techniques that can be used to speed up the 
+1. name the four complementary techniques that can be used to speed up the 
   predictions and reduce the memory footprint of transformers (page 209)
-- name the main approaches to quantization and list their pros and cons
+2. name the main approaches to quantization and list their pros and cons
   (page 235)
+
+---
+
+**Dealing with Few to No Labels**
+1. Draw `Figure 9-1` on page 250, which shows several techniques that can be 
+   used to improve model performance in the absence of large amounts of 
+   labeled data
+2. If you find it difficult to get good results on your own dataset, here are 
+   few things you can do to improve the zero-shot pipeline: A \& B (page 271)
+3. In NLP practice, name the two types of data augmentation techniques that are commonly used (page 272)
+4. List steps of using embeddings as a lookup table (page 275)
