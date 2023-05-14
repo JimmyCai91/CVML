@@ -63,13 +63,22 @@
 ---
 
 **Multilingual Named Entity Recognition**
+1. Name steps involved in the tokenizer pipeline and explain them in detail 
+   (page 94-95)
+
+---
+
+**Text Generation**
+1. Describe `conditional text generation` (page 126)
+2. Beam search also suffers from repetitive text. List popular ways to address 
+   this (page 133 - 139)
 
 ---
 
 **Making Transformers Efficient in Production**
 1. name the four complementary techniques that can be used to speed up the 
   predictions and reduce the memory footprint of transformers (page 209)
-2. name the main approaches to quantization and list their pros and cons
+1. name the main approaches to quantization and list their pros and cons
   (page 235)
 
 ---
@@ -82,3 +91,11 @@
    few things you can do to improve the zero-shot pipeline: A \& B (page 271)
 3. In NLP practice, name the two types of data augmentation techniques that are commonly used (page 272)
 4. List steps of using embeddings as a lookup table (page 275)
+
+---
+
+**Training Transformers from Scratch**
+1. There are several subword tokenization algorithms that can be used, name 
+   some of them and describe the implementations and their pros and cons 
+   (page 312)
+2. Explain byte-level representation (page 314)
