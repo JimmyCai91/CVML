@@ -31,3 +31,8 @@
   - `huggingface-transformer-anatomy.ipynb`
   - `huggingface-making-transformers-efficient-in-production.ipynb`
   - `huggingface-dealing-with-few-to-no-labels.ipynb`
+
+---
+## XGBoost
+Quickly finished 1 round of `hands on gradient boosting with XGBoost and 
+Scikit-learn`
